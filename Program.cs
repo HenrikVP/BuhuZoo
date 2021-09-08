@@ -1,4 +1,5 @@
 ﻿using BuhuZoo.Models;
+using BuhuZoo.Views;
 using System;
 using System.Collections.Generic;
 
@@ -11,6 +12,9 @@ namespace BuhuZoo
             Console.WriteLine("Hello Zoo-World!");
 
             ZooKeeper zooKeeper = new ZooKeeper();
+
+            AddZooKeeper azk = new AddZooKeeper();
+            azk.GetInput();
 
             //If we use a list as a property we have to instantiate a new list
             //for each instance of ZooKeeper

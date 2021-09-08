@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuhuZoo.Models
 {
-    public enum Gender { Non_Binary, Female, Male, Hermaphrodite, Other }
+    public enum Gender { Other, Non_Binary, Female, Male, Hermaphrodite }
     //Made sealed, so class cannot be inherited from.
     sealed class ZooKeeper : BaseClass
     {
