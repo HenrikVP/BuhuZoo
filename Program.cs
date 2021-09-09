@@ -11,8 +11,10 @@ namespace BuhuZoo
         {
             Console.WriteLine("Hello Zoo-World!");
 
-            ZooKeeperView zkv = new ZooKeeperView();
-            zkv.GetInput();
+            //ZooKeeperView zkv = new ZooKeeperView();
+            //zkv.GetInput();
+            AnimalView av = new AnimalView();
+            av.AddAnimal();
 
             //ZooKeeper zooKeeper = new ZooKeeper();
             //If we use a list as a property we have to instantiate a new list

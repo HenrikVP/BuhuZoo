@@ -10,7 +10,7 @@ namespace BuhuZoo.Models
         Grey, Magenta, Purple, Cyan, Transparent, Other }
     class Animal : BaseClass
     {
-        public Color color {  get; set; }
+        public Color Color {  get; set; }
         public string Race { get; set; }
     }
 }
