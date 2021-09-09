@@ -1,4 +1,5 @@
-﻿using BuhuZoo.Models;
+﻿using BuhuZoo.Controllers;
+using BuhuZoo.Models;
 using BuhuZoo.Views;
 using System;
 using System.Collections.Generic;
@@ -10,23 +11,8 @@ namespace BuhuZoo
         static void Main(string[] args)
         {
             Console.WriteLine("Hello Zoo-World!");
-
-            ZooKeeperView zkv = new ZooKeeperView();
-            zkv.Show(zkv.AddZooKeeper());
-
-            AnimalView av = new AnimalView(); 
-            av.ShowAnimal(av.AddAnimal());
-
-            //ZooKeeper zooKeeper = new ZooKeeper();
-            //If we use a list as a property we have to instantiate a new list
-            //for each instance of ZooKeeper
-            //List<Animal> list = new List<Animal>();
-            //zooKeeper.AnimalListProperty = list;
-            //zooKeeper.AnimalListProperty.Add(new Animal());
-
-            //If we instantiate a new list in the zookeeper model, we will have
-            //a ready list when zookeeper is instantiated.
-            //zooKeeper.AnimalList.Add(new Animal());
+            while (true)
+                new MenuView().Menu();
         }
     }
 }

@@ -1,18 +1,15 @@
 ﻿using BuhuZoo.Models;
 using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BuhuZoo
+namespace BuhuZoo.Controllers
 {
     class Sql
     {
-        public int? Insert(Animal animal)
+        const string connectionString = "Data Source=.;Initial Catalog=BuhuzooDB;Integrated Security=True";
+        public static int? Insert(Animal animal)
         {
-
         //public int Id { get; set; }
         //public string Name { get; set; }
         //public Gender Gender { get; set; }
@@ -20,27 +17,23 @@ namespace BuhuZoo
         //public Color Color { get; set; }
         //public string Race { get; set; }
 
-        // Prepare a proper parameterized query 
-        string sql = "INSERT INTO animal ([name], gender, DateOfBirth, color, race) " +
+        string sql = "INSERT INTO Animal ([name], gender, DateOfBirth, color, race) " +
                 "OUTPUT INSERTED.id " +
                 "VALUES(@name, @gender, @DateOfBirth, @color, @race) ";
 
-            // Create the connection (and be sure to dispose it at the end)
             using (SqlConnection cnn = new SqlConnection(connectionString))
             {
                 try
                 {
-                    // Open the connection to the database. 
-                    // This is the first critical step in the process.
-                    // If we cannot reach the db then we have connectivity problems
                     cnn.Open();
 
-                    // Prepare the command to be executed on the db
                     using (SqlCommand cmd = new SqlCommand(sql, cnn))
                     {
-                        // Create and set the parameters values 
-                        cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = person.Name;
-                        cmd.Parameters.Add("@dob", SqlDbType.DateTime).Value = person.Dob;
+                        cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = animal.Name;
+                        cmd.Parameters.Add("@gender", SqlDbType.NVarChar).Value = animal.Gender;
+                        cmd.Parameters.Add("@color", SqlDbType.NVarChar).Value = animal.Color;
+                        cmd.Parameters.Add("@race", SqlDbType.NVarChar).Value = animal.Race;
+                        cmd.Parameters.Add("@DateOfBirth", SqlDbType.DateTime).Value = animal.DateOfBirth;
 
                         var id = cmd.ExecuteScalar();
                         return (int?)id;
