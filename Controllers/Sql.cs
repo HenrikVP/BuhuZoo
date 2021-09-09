@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BuhuZoo.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +12,18 @@ namespace BuhuZoo
     {
         public int? Insert(Animal animal)
         {
-            // Prepare a proper parameterized query 
-            string sql = "INSERT INTO person ([name], dob) OUTPUT INSERTED.id VALUES(@name,@dob) ";
+
+        //public int Id { get; set; }
+        //public string Name { get; set; }
+        //public Gender Gender { get; set; }
+        //public DateTime DateOfBirth { get; set; }
+        //public Color Color { get; set; }
+        //public string Race { get; set; }
+
+        // Prepare a proper parameterized query 
+        string sql = "INSERT INTO animal ([name], gender, DateOfBirth, color, race) " +
+                "OUTPUT INSERTED.id " +
+                "VALUES(@name, @gender, @DateOfBirth, @color, @race) ";
 
             // Create the connection (and be sure to dispose it at the end)
             using (SqlConnection cnn = new SqlConnection(connectionString))
