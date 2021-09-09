@@ -1,11 +1,26 @@
 ﻿using BuhuZoo.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace BuhuZoo.Views
 {
     class AnimalView
     {
+        public void ShowAllAnimals(List<Animal> animalList)
+        {
+            Console.WriteLine("\n*** SHOW ALL ANIMALS ***");
+            foreach (var animal in animalList)
+            {
+                foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(animal))
+                {
+                    string name = descriptor.Name;
+                    object value = descriptor.GetValue(animal);
+                    Console.WriteLine($"{name}: {value}");
+                }
+            }
+        }
+
         public void ShowAnimal(Animal animal)
         {
             Console.WriteLine("\n*** SHOW ANIMAL ***");
@@ -34,7 +49,7 @@ namespace BuhuZoo.Views
             return animal;
         }
 
-        private static void GetGender(Animal animal)
+        private void GetGender(Animal animal)
         {
             foreach (var gender in Enum.GetValues(typeof(Gender)))
             { Console.WriteLine((int)gender + " " + gender.ToString()); }
@@ -45,7 +60,7 @@ namespace BuhuZoo.Views
             animal.Gender = g;
         }
 
-        private static void GetColor(Animal animal)
+        private void GetColor(Animal animal)
         {
             foreach (var color in Enum.GetValues(typeof(Color)))
             { Console.WriteLine((int)color + " " + color.ToString()); }

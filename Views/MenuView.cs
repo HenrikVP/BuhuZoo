@@ -2,9 +2,6 @@
 using BuhuZoo.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuhuZoo.Views
 {
@@ -13,7 +10,7 @@ namespace BuhuZoo.Views
         public void Menu()
         {
             Console.WriteLine(
-    "\n*** MAIN MENU ***" +
+    "\n*** MAIN MENU ***\n" +
     "1 Add Animal\n" +
     "2 Show All Animals\n" +
     "3 Search for Animal\n" +
@@ -28,6 +25,7 @@ namespace BuhuZoo.Views
                     AddAnimal();
                     break;
                 case "2":
+                    ShowAllAnimals(); 
                     break;
                 case "3":
                     break;
@@ -45,11 +43,21 @@ namespace BuhuZoo.Views
 
         }
 
+        private void ShowAllAnimals()
+        {
+            AnimalCRUD sql = new AnimalCRUD();
+            List<Animal> animalList = sql.Select();
+            AnimalView av = new AnimalView();
+            av.ShowAllAnimals(animalList);
+            //eller...
+            //new AnimalView().ShowAllAnimals(new Sql().Select());
+        }
+
         private void AddAnimal()
         {
             AnimalView av = new AnimalView();
             Animal animal = av.AddAnimal();
-            int? id = Sql.Insert(animal);
+            int? id = AnimalCRUD.Insert(animal);
             if (id != null)
             {
                 animal.Id = (int)id;

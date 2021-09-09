@@ -1,8 +1,5 @@
-﻿using BuhuZoo.Controllers;
-using BuhuZoo.Models;
-using BuhuZoo.Views;
+﻿using BuhuZoo.Views;
 using System;
-using System.Collections.Generic;
 
 namespace BuhuZoo
 {
