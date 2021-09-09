@@ -1,18 +1,26 @@
 ﻿using BuhuZoo.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace BuhuZoo.Views
 {
     class AnimalView
     {
+        public void ShowAnimal(Animal animal)
+        {
+            Console.WriteLine("*** SHOW ANIMAL ***");
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(animal))
+            {
+                string name = descriptor.Name;
+                object value = descriptor.GetValue(animal);
+                Console.WriteLine($"{name}: {value}");
+            }
+        }
+
         public Animal AddAnimal()
         {
             Animal animal = new Animal();
-            Console.WriteLine("ADD NEW ANIMAL");
+            Console.WriteLine("*** ADD NEW ANIMAL ***");
             Console.Write("Name: ");
             animal.Name = Tools.cr();
             Console.Write("Race: ");

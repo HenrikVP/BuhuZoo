@@ -1,11 +1,23 @@
 ﻿using System;
+using System.ComponentModel;
 using BuhuZoo.Models;
 
 namespace BuhuZoo.Views
 {
     class ZooKeeperView
     {
-        public ZooKeeper GetInput()
+        public void Show(Object xyz)
+        {
+            Console.WriteLine("*** SHOW ZOO KEEPER ***");
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(xyz))
+            {
+                string name = descriptor.Name;
+                object value = descriptor.GetValue(xyz);
+                Console.WriteLine($"{name}: {value}");
+            }
+        }
+
+        public ZooKeeper AddZooKeeper()
         {
             ZooKeeper zooKeeper = new ZooKeeper();
             Console.WriteLine("ADD NEW ZOO KEEPER");
