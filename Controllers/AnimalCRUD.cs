@@ -16,12 +16,11 @@ namespace BuhuZoo.Controllers
         public List<Animal> Select(int zooKeeperId)
         {
             List<Animal> animalList = new List<Animal>();
-            string sql =$@"
-SELECT animal.id, animal.[Name], animal.Race, animal.Color, animal.DateOfBirth, animal.Gender
-FROM ZooKeeperAnimal
-JOIN animal ON Animal.Id = ZooKeeperAnimal.AnimalId
-WHERE ZooKeeperAnimal.ZooKeeperId = {zooKeeperId}";
-
+            string sql =
+$"SELECT A.id, A.[Name], A.Gender, A.DateOfBirth, A.Color, A.Race " +
+$"FROM ZooKeeperAnimal AS Z "+
+$"JOIN animal AS A ON A.Id = Z.AnimalId "+
+$"WHERE Z.ZooKeeperId = {zooKeeperId}";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

@@ -42,18 +42,22 @@ SELECT * FROM ZooKeeper
 SELECT * FROM Animal
 SELECT * FROM ZooKeeperAnimal
 
-SELECT animal.id, animal.[Name], animal.Race, animal.Color, animal.DateOfBirth, animal.Gender
-FROM ZooKeeperAnimal 
-JOIN animal ON Animal.Id = ZooKeeperAnimal.AnimalId
-WHERE ZooKeeperAnimal.ZooKeeperId = 1
+SELECT A.id, A.[Name], A.Race, A.Color, A.DateOfBirth, A.Gender
+FROM ZooKeeperAnimal AS Z
+JOIN animal AS A ON A.Id = Z.AnimalId
+WHERE Z.ZooKeeperId = 1
 
---SELECT animal.id, animal.[Name], animal.Race, animal.Color, animal.DateOfBirth, animal.Gender FROM Animal 
---FULL JOIN ZooKeeperAnimal ON Animal.Id = ZooKeeperAnimal.AnimalId
---RIGHT JOIN ZooKeeper ON ZooKeeperAnimal.ZooKeeperId = 1
+
 --create table colors (
 --id INT IDENTITY(1,1) PRIMARY KEY not null,
 --color NVARCHAR(255)
 --)
+
+DELETE FROM Animal
+--Resets identity
+DBCC CHECKIDENT ('Animal', RESEED, 0)
+
+DBCC CHECKIDENT ('Animal', RESEED)
 
 --create table race (
 --id INT IDENTITY(1,1) PRIMARY KEY not null,

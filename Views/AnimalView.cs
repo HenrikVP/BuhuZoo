@@ -44,8 +44,22 @@ namespace BuhuZoo.Views
             GetColor(animal);
             GetGender(animal);
 
-            Console.Write("Date of Birth (dd-mm-yyyy): ");
-            animal.DateOfBirth = Tools.String2Datetime(Tools.cr());
+            bool isDateOk = false;
+            do
+            {
+                try
+                {
+                    Console.Write("Date of Birth (dd-mm-yyyy): ");
+                    animal.DateOfBirth = Tools.String2Datetime(Tools.cr());
+                    isDateOk = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ERROR: " + e.GetType() + " " + e.Message);
+                }
+            } while (!isDateOk);
+
+
             return animal;
         }
 

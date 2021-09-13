@@ -35,7 +35,7 @@ namespace BuhuZoo.Controllers
                                 Gender = (Gender)Enum.Parse(typeof(Gender), reader[2].ToString()),                              
                                 DateOfBirth = (DateTime)reader[3],
                                 Email = reader[4].ToString(),
-                                //AnimalList = new AnimalCRUD().Select((int)reader[0])
+                                AnimalList = new AnimalCRUD().Select((int)reader[0])
                             });
                     }
                 }

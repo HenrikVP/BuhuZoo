@@ -30,6 +30,7 @@ namespace BuhuZoo.Views
                     object value = descriptor.GetValue(zooKeeper);
                     Console.WriteLine($"{name}: {value}");
                 }
+                new AnimalView().ShowAllAnimals(zooKeeper.AnimalList);
             }
         }
 
