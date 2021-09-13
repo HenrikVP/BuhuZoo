@@ -13,6 +13,47 @@ namespace BuhuZoo.Controllers
             "Initial Catalog=BuhuzooDB;" +
             "Integrated Security=True";
 
+        public List<Animal> Select(int zooKeeperId)
+        {
+            List<Animal> animalList = new List<Animal>();
+            string sql =$@"
+SELECT animal.id, animal.[Name], animal.Race, animal.Color, animal.DateOfBirth, animal.Gender
+FROM ZooKeeperAnimal
+JOIN animal ON Animal.Id = ZooKeeperAnimal.AnimalId
+WHERE ZooKeeperAnimal.ZooKeeperId = {zooKeeperId}";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        animalList.Add(
+                            new Animal()
+                            {
+                                Id = (int)reader[0],
+                                Name = (string)reader[1],
+                                Gender = (Gender)Enum.Parse(typeof(Gender), reader[2].ToString()),
+                                DateOfBirth = (DateTime)reader[3],
+                                Color = (Color)Enum.Parse(typeof(Color), reader[4].ToString()),
+                                Race = (string)reader[5]
+                            });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("ERROR:" + ex.GetType() + ex.Message);
+                    return null;
+                }
+            }
+            return animalList;
+        }
+
         public List<Animal> Select()
         {
             List<Animal> animalList = new List<Animal>();

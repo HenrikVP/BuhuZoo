@@ -30,10 +30,12 @@ namespace BuhuZoo.Views
                 case "3":
                     break;
                 case "4":
-                    ZooKeeperView zkv = new ZooKeeperView();
-                    zkv.Show(zkv.AddZooKeeper());
+                    AddZooKeeper();
                     break;
                 case "5":
+
+                    var list = new ZooKeeperCRUD().Select();
+                    new ZooKeeperView().Show(list);
                     break;
                 case "6":
                     break;
@@ -41,6 +43,19 @@ namespace BuhuZoo.Views
                     break;
             }
 
+        }
+
+        private static void AddZooKeeper()
+        {
+            ZooKeeperView zkv = new ZooKeeperView();
+            ZooKeeper zooKeeper = zkv.AddZooKeeper();
+            int? id = ZooKeeperCRUD.Insert(zooKeeper);
+            if (id != null)
+            {
+                zooKeeper.Id = (int)id;
+                zkv.Show(zooKeeper);
+            }
+            else Console.WriteLine("Something went wrong!!!");
         }
 
         private void ShowAllAnimals()

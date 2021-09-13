@@ -11,7 +11,8 @@ namespace BuhuZoo.Models
     sealed class ZooKeeper : BaseClass
     {
         public string Email { get; set; }
-        public List<Animal> AnimalListProperty { get; set; }
+
+        //public List<Animal> AnimalListProperty { get; set; }
 
         public List<Animal> AnimalList = new List<Animal>();
     }

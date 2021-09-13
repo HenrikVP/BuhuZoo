@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using BuhuZoo.Models;
 
@@ -6,14 +7,29 @@ namespace BuhuZoo.Views
 {
     class ZooKeeperView
     {
-        public void Show(Object xyz)
+
+        public void Show(Object zooKeeper)
         {
             Console.WriteLine("*** SHOW ZOO KEEPER ***");
-            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(xyz))
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(zooKeeper))
             {
                 string name = descriptor.Name;
-                object value = descriptor.GetValue(xyz);
+                object value = descriptor.GetValue(zooKeeper);
                 Console.WriteLine($"{name}: {value}");
+            }
+        }
+
+        public void Show(List<ZooKeeper> objectList)
+        {
+            Console.WriteLine("*** SHOW ALL ZOO KEEPERS ***");
+            foreach (var zooKeeper in objectList)
+            {
+                foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(zooKeeper))
+                {
+                    string name = descriptor.Name;
+                    object value = descriptor.GetValue(zooKeeper);
+                    Console.WriteLine($"{name}: {value}");
+                }
             }
         }
 
