@@ -4,6 +4,11 @@ namespace BuhuZoo.Views
 {
     class Tools
     {
+        public const string ConnectionString =
+            "Data Source=.;" +
+            "Initial Catalog=BuhuzooDB;" +
+            "Integrated Security=True";
+
         public static string cr()
         {
             return Console.ReadLine();

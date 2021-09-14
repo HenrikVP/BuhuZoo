@@ -53,10 +53,15 @@ namespace BuhuZoo.Views
                     animal.DateOfBirth = Tools.String2Datetime(Tools.cr());
                     isDateOk = true;
                 }
+                catch (ArgumentOutOfRangeException e)
+                { 
+                    Console.WriteLine("ERROR: " + e.GetType() + " " + e.Message); 
+                }
                 catch (Exception e)
                 {
                     Console.WriteLine("ERROR: " + e.GetType() + " " + e.Message);
                 }
+
             } while (!isDateOk);
 
 

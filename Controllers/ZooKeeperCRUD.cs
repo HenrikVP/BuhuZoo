@@ -8,10 +8,18 @@ namespace BuhuZoo.Controllers
 {
     class ZooKeeperCRUD
     {
-        const string connectionString =
-            "Data Source=.;" +
-            "Initial Catalog=BuhuzooDB;" +
-            "Integrated Security=True";
+        private string connectionString;
+
+        public ZooKeeperCRUD() { }
+        public ZooKeeperCRUD(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
+        //const string connectionString =
+        //    "Data Source=.;" +
+        //    "Initial Catalog=BuhuzooDB;" +
+        //    "Integrated Security=True";
 
         public List<ZooKeeper> Select()
         {
@@ -48,7 +56,7 @@ namespace BuhuZoo.Controllers
             return zooKeeperList;
         }
 
-        public static int? Insert(ZooKeeper zooKeeper)
+        public int? Insert(ZooKeeper zooKeeper)
         {
             string sql = "INSERT INTO zooKeeper ([name], gender, DateOfBirth, email) " +
                     "OUTPUT INSERTED.id " +

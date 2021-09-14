@@ -7,7 +7,6 @@ namespace BuhuZoo.Views
 {
     class ZooKeeperView
     {
-
         public void Show(Object zooKeeper)
         {
             Console.WriteLine("*** SHOW ZOO KEEPER ***");

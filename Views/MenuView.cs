@@ -34,7 +34,7 @@ namespace BuhuZoo.Views
                     break;
                 case "5":
 
-                    var list = new ZooKeeperCRUD().Select();
+                    var list = new ZooKeeperCRUD(Tools.ConnectionString).Select();
                     new ZooKeeperView().Show(list);
                     break;
                 case "6":
@@ -49,7 +49,7 @@ namespace BuhuZoo.Views
         {
             ZooKeeperView zkv = new ZooKeeperView();
             ZooKeeper zooKeeper = zkv.AddZooKeeper();
-            int? id = ZooKeeperCRUD.Insert(zooKeeper);
+            int? id = new ZooKeeperCRUD(Tools.ConnectionString).Insert(zooKeeper);
             if (id != null)
             {
                 zooKeeper.Id = (int)id;
